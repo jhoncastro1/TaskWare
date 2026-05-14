@@ -108,7 +108,7 @@ const SignUpForm = ({ setTypeSelected }: AuthFormProps) => {
                                             <Input
                                                 {...field}
                                                 id="name"
-                                                placeholder="John"
+                                                placeholder="Jhon"
                                                 type="text"
                                                 autoComplete="name"
                                                 maxLength={20}
@@ -166,7 +166,7 @@ const SignUpForm = ({ setTypeSelected }: AuthFormProps) => {
                             />
 
                             {/* ========== Submit ========= */}
-                            <Button className="mt-6" type="submit" disabled={isLoading}>
+                            <Button className="mt-6 cursor-pointer" type="submit" disabled={isLoading}>
                                 {isLoading && (
                                     <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
                                 )}

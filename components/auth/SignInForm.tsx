@@ -118,7 +118,6 @@ const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
                                                 placeholder="*****"
                                                 type="password"
                                                 autoComplete="current-password"
-                                                disabled={isLoading}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -134,7 +133,7 @@ const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
                             </div>
 
                             {/* ========== Submit ========= */}
-                            <Button type="submit" disabled={isLoading}>
+                            <Button type="submit" disabled={isLoading} className="cursor-pointer">
                                 {isLoading && (
                                     <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
                                 )}

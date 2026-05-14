@@ -1,5 +1,6 @@
 "use client"
 
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useState } from "react";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
 import { AuthFormProps } from "./AuthForm";
 
@@ -47,9 +48,9 @@ const RecoverPasswordForm = ({ setTypeSelected }: AuthFormProps) => {
         setisLoading(true);
 
         try {
-      
+
             console.log(user);
-            
+
 
         } catch (e) {
             const error = e as Error;
@@ -61,6 +62,17 @@ const RecoverPasswordForm = ({ setTypeSelected }: AuthFormProps) => {
 
     return (
         <div>
+            <div className="flex justify-start mb-4">
+                <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setTypeSelected('sign-in')}
+                    className="flex items-center gap-2 cursor-pointer"
+                >
+                    <ArrowLeft className="w-4 h-4" />
+                    Volver
+                </Button>
+            </div>
             <div className="w-full backdrop-blur-xl py-6 rounded-4xl">
                 <div className="rounded-xl px-6">
                     <div className="text-center">
@@ -98,7 +110,7 @@ const RecoverPasswordForm = ({ setTypeSelected }: AuthFormProps) => {
                                 />
 
                                 {/* ========== Submit ========= */}
-                                <Button className="my-6" type="submit" disabled={isLoading}>
+                                <Button className="my-6 cursor-pointer" type="submit" disabled={isLoading}>
                                     {isLoading && (
                                         <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
                                     )}
