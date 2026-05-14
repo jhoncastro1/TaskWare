@@ -19,6 +19,7 @@ import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import { AuthFormProps } from "./AuthForm";
+import { signup } from "@/actions/auth/auth";
 
 
 
@@ -59,7 +60,14 @@ const SignUpForm = ({ setTypeSelected }: AuthFormProps) => {
         setisLoading(true);
 
         try {
-            console.log(user);
+            const res = await signup(user);
+            if (res.success) {
+                toast.success(`Hola ${user.name}, te hemos enviado un correo para poder validar tu cuenta `, { duration: 4000, icon: '📧' });
+                setTypeSelected('sign-in');
+                form.reset();
+            }
+
+            console.log(res);
 
         } catch (e) {
             const error = e as Error;
@@ -94,7 +102,7 @@ const SignUpForm = ({ setTypeSelected }: AuthFormProps) => {
                 </div>
 
                 <Form {...form}>
-                    <form onSubmit={handleSubmit(onSubmit)} className="mx-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
                         <div className="grid gap-2">
 
                             {/* ========== Name ========= */}
@@ -178,7 +186,7 @@ const SignUpForm = ({ setTypeSelected }: AuthFormProps) => {
                 </Form>
 
                 {/* ========== Sign In ========= */}
-                <p className="text-center text-sm mt-6 text-black">
+                <p className="text-center text-sm mt-6">
                     ¿Ya tienes una cuenta?{" "}
                     <span
                         onClick={() => !isLoading && setTypeSelected('sign-in')}

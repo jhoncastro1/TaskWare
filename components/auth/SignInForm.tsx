@@ -19,6 +19,7 @@ import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import { AuthFormProps } from "./AuthForm";
+import { login } from "@/actions/auth/auth";
 
 
 const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
@@ -51,7 +52,9 @@ const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
 
         try {
 
-            console.log(data);
+            const res = await login(data);
+
+            if (res.success) window.location.reload();
 
         } catch (e) {
             const error = e as Error;
@@ -80,7 +83,7 @@ const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
                 </div>
 
                 <Form {...form}>
-                    <form onSubmit={handleSubmit(onSubmit)} className="mx-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
                         <div className="grid gap-2">
                             {/* ========== Email ========= */}
                             <FormField
@@ -145,7 +148,7 @@ const SignInForm = ({ setTypeSelected }: AuthFormProps) => {
                 </Form>
 
                 {/* ========== Sign Up ========= */}
-                <p className="text-center text-sm text-black mt-4">
+                <p className="text-center text-sm mt-4">
                     {"¿No tienes cuenta?  "}
                     <span
                         onClick={() => setTypeSelected('sign-up')}

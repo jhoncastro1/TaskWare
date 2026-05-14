@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,12 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-full antialiased dark">
       <body
         className="min-h-full flex flex-col"
         style={{ fontFamily: "Arial, sans-serif" }}
       >
         {children}
+        <Toaster position="top-right" />
       </body>
     </html>
   );

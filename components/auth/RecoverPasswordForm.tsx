@@ -74,7 +74,7 @@ const RecoverPasswordForm = ({ setTypeSelected }: AuthFormProps) => {
                 </Button>
             </div>
             <div className="w-full backdrop-blur-xl py-6 rounded-4xl">
-                <div className="rounded-xl px-6">
+                <div className="rounded-xl w-full">
                     <div className="text-center">
                         <h1 className="lg:text-5xl md:text-4xl text-3xl font-semibold text-center my-4">
                             Recuperar Contraseña
@@ -121,7 +121,7 @@ const RecoverPasswordForm = ({ setTypeSelected }: AuthFormProps) => {
                     </Form>
 
                     {/* ========== Volver ========= */}
-                    <p className="text-center text-sm text-white mt-3">
+                    <p className="text-center text-sm mt-3">
                         <span
                             onClick={() => setTypeSelected('sign-in')}
                             className="underline underline-offset-4 hover:text-primary cursor-pointer"
