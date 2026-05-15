@@ -45,3 +45,42 @@ export async function signup(formData: { name: string, email: string, password: 
         data
     }
 }
+
+export async function sendRecoveryEmail(email: string) {
+    const supabase = await createClient()
+
+    const { error, data } = await supabase.auth.resetPasswordForEmail(email)
+
+    if (error) {
+        return {
+            success: false,
+            message: error.message
+        }
+    }
+
+    return {
+        success: true,
+        message: 'Correo de recuperación enviado',
+        data
+    }
+}
+
+export async function updatePassword(formData: { password: string }) {
+    const supabase = await createClient()
+
+    const { error, data } = await supabase.auth.updateUser({
+        password: formData.password
+    })
+
+    if (error) {
+        return {
+            success: false,
+            message: error.message
+        }
+    }
+    return {
+        success: true,
+        message: 'Contraseña actualizada',
+        data
+    }
+}
